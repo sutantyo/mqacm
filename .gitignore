@@ -7,13 +7,15 @@ bitbucket-pipelines.yml
 
 # dependencies
 /node_modules
-/mqacm_client/node_modules
 
 # testing
 /coverage
 
 # production
 /mqacm_client/build
+/mqacm_client/node_modules
+/mqacm_client/.gitignore
+/mqacm_client/README.md
 
 # misc
 .DS_Store
