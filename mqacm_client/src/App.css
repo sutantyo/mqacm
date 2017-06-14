@@ -1,0 +1,22 @@
+
+.App-header {
+  text-align: left;
+  vertical-align: top;
+  background-color: none;
+  height: 40px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px auto;
+  color: white;
+  font-family: "Arial Black","Arial Bold",Gadget,sans-serif;
+}
+
+::-webkit-scrollbar {display:none;}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
