@@ -53,12 +53,13 @@ class ProblemList extends React.Component {
   render(){
     if (this.state.ready_to_render){
       let problems = this.generateRowData(this.state.problemset);
+      let cardTitle = this.props.title + " (" + problems.length + " problems)";
       return (
         <div>
           <Card style = {cardStyle}>
           <CardHeader
               actAsExpander={true}
-              title={this.props.title + "   " + "(" + problems.length + " problems)"}
+              title = {cardTitle}
               showExpandableButton={true}
           />
           <CardMedia expandable={true}>

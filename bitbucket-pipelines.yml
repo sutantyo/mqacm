@@ -14,6 +14,7 @@ pipelines:
             - export APP_CNAME=$BITBUCKET_REPO_SLUG-staging.science.mq.edu.au
             - export NODE_ENV=staging
             - npm install
-            - cd ./mqacm_client && npm install --only=dev && npm install && npm run build
+            - cd ./mqacm_client && npm install && npm run build
             # - npm run build
-            # - chmod +x ./deployment/deploy.bash && ./deployment/deploy.bash # Run this bash script to do the heavy lifting of deployment
+            - cd ../
+            - chmod +x ./deployment/deploy.bash && ./deployment/deploy.bash # Run this bash script to do the heavy lifting of deployment

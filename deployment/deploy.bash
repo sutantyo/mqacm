@@ -25,6 +25,8 @@ sed -i "s/server_name_replace_here/$APP_CNAME/g" ./deployment/nginx.conf
 sed -i "s/database_replaced_by_bitbucket/$DATABASE_PASSWORD_EXAM_PROCESSING/g" ./deployment/docker-compose.yml
 sed -i "s/ldap_replaced_by_bitbucket/$AUTH_LDAP_BIND_PASSWORD_EXAM_PROCESSING/g" ./deployment/docker-compose.yml
 sed -i "s/django_environment_replaced_by_bitbucket/$DJANGO_ENVIRONMENT/g" ./deployment/docker-compose.yml
+sed -i "s/firebase_admin_identifier_replaced_by_bitbucket/$FIREBASE_ADMIN_IDENTIFIER/g" ./deployment/docker-compose.yml
+sed -i "s/firebase_admin_password_replaced_by_bitbucket/$FIREBASE_ADMIN_PASSWORD/g" ./deployment/docker-compose.yml
 
 
 tar -cf ~/$BITBUCKET_REPO_SLUG.tar.gz .

@@ -6,7 +6,7 @@ import Instructions from './Instructions';
 import NewsBar from './NewsBar';
 import {Tabs,Tab} from 'material-ui/Tabs';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
-import {grey600, grey700} from 'material-ui/styles/colors';
+import {grey700} from 'material-ui/styles/colors';
 
 let headerStyle={
   //fontFamily: '"Gill Sans","Gill Sans MT",Calibri,sans-serif',
@@ -47,7 +47,7 @@ class App extends Component {
             <ToolbarTitle style={headerStyle} text="Macquarie University Programming Contest Page"/>
           </ToolbarGroup>
           <ToolbarGroup>
-            <img src="mq_horizontal.png?" style={{width:'200px'}}/>
+            <img src="mq_horizontal.png?" alt="Macquarie University" style={{width:'200px'}}/>
           </ToolbarGroup>
         </Toolbar>
 

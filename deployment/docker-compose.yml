@@ -11,3 +11,5 @@ services:
         - "7006:5000"
       environment:
         - NODE_ENV=production
+        - FIREBASE_ADMIN_IDENTIFIER=firebase_admin_identifier_replaced_by_bitbucket
+        - FIREBASE_ADMIN_PASSWORD=firebase_admin_password_replaced_by_bitbucket
