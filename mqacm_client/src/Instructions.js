@@ -112,20 +112,6 @@ class Instructions extends Component{
 export default Instructions;
 
 
-let codeString = "import.java.io.*;\n\
-import.java.util.*;\n\n\
-class Main\n\
-{\n\
-    public static void main (String args[]){\n\
-      Scanner in = new Scanner(new InputStreamReader(System.in));\n\
-      while (in.hasNext()){\n\
-        int l = in.nextInt();\n\
-        int m = in.nextInt();\n\
-        int r = in.nextInt();\n\
-        int out = (l > m) ? ((l > r) ? l : r) : ((m > r) ? m : r);\n\
-        System.out.println(out);\n\
-      }\n\
-    }\n\
-}"
+let codeString = "import.java.io.*;\nimport.java.util.*;\n\nclass Main\n{\npublic static void main (String args[]){\nScanner in = new Scanner(new InputStreamReader(System.in));\nwhile (in.hasNext()){\nint l = in.nextInt();\nint m = in.nextInt();\nint r = in.nextInt();\nint out = (l > m) ? ((l > r) ? l : r) : ((m > r) ? m : r);\nSystem.out.println(out);\n}\n}\n}"
 
 let bashString = "java Main < in.txt > out.txt"
