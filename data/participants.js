@@ -12,5 +12,19 @@ exports.list = {
     "id" : "846074",
     "mqid" : "",
     "name" : "james"
+  },
+  "906810" : {
+    "email" : "",
+    "fullname" : "Nick Liu",
+    "id" : "906810",
+    "mqid" : "",
+    "name" : "littlenick27"
+  },
+  "906902" : {
+    "email" : "",
+    "fullname" : "Tahiry Rabehaja",
+    "id" : "906902",
+    "mqid" : "",
+    "name" : "tahiry"
   }
 }
