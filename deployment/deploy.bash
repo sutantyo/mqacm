@@ -8,9 +8,9 @@
 # * the user has it own home directory and correct permissions
 # * the user can run pm2
 # * the user can run sudo nginx -s reload
-# * generate ssh key pair for the user; 
+# * generate ssh key pair for the user;
 # * add user's public key into target server's ~/.ssh/authorized_keys
-# * set up repo environment variable(APP_SSH_KEY) using the user's private key 
+# * set up repo environment variable(APP_SSH_KEY) using the user's private key
 # * add my_known_hosts under repo directory via  ssh-keyscan -t rsa app-staging.science.mq.edu.au > my_known_hosts
 # * create a file /etc/nginx/sites-available/$BITBUCKET_REPO_SLUG and the user has right permissions(scp into it)
 # * symbolic link ln -sf /etc/nginx/sites-available/$BITBUCKET_REPO_SLUG /etc/nginx/sites-enabled/$BITBUCKET_REPO_SLUG
@@ -25,10 +25,6 @@ sed -i "s/server_name_replace_here/$APP_CNAME/g" ./deployment/nginx.conf
 sed -i "s/database_replaced_by_bitbucket/$DATABASE_PASSWORD_EXAM_PROCESSING/g" ./deployment/docker-compose.yml
 sed -i "s/ldap_replaced_by_bitbucket/$AUTH_LDAP_BIND_PASSWORD_EXAM_PROCESSING/g" ./deployment/docker-compose.yml
 sed -i "s/django_environment_replaced_by_bitbucket/$DJANGO_ENVIRONMENT/g" ./deployment/docker-compose.yml
-sed -i "s/react_app_api_key_replace_here/$REACT_APP_API_KEY/g" .env.production
-sed -i "s/hostname_replace_here/$FIREBASE_HOSTNAME/g" .env.production
-sed -i "s/messaging_sender_id_replace_here/$MESSAGING_SENDER_ID/g" .env.production
-
 
 
 tar -cf ~/$BITBUCKET_REPO_SLUG.tar.gz .
