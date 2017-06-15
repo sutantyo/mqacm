@@ -1,0 +1,13 @@
+version: '2.0'
+services:
+   mqacm:
+      restart: always
+      container_name: mqacm
+      build:
+        context: .. # specify the context you would like to build
+        dockerfile: deployment/Dockerfile # specify the location of Dockerfile
+      image: mqacm
+      ports:
+        - "7006:5000"
+      environment:
+        - NODE_ENV=production
