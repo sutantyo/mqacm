@@ -16,7 +16,8 @@ class LeaderBoard extends React.Component {
     super();
     this.state = {
       ready_to_render : false,
-      participants : []
+      participants : [],
+      last_update : 0,
     }
   }
 
@@ -24,10 +25,14 @@ class LeaderBoard extends React.Component {
     firebase.database().ref('participants').on('value', snapshot =>{
       this.setState({
           ready_to_render: true,
-          //participants : testdata
           participants : snapshot.val()
       })
-    })
+    });
+    firebase.database().ref('last_update').on('value', snapshot =>{
+      this.setState({
+          last_update : new Date(snapshot.val())
+      })
+    });
   }
 
   generateRowData(data){
@@ -43,8 +48,11 @@ class LeaderBoard extends React.Component {
   }
 
   render(){
+      let date_options = { weekday: 'long', year: 'numeric', month: 'long', day:'numeric', timeZoneName: 'short', hour:'numeric', minute:'numeric',second:'numeric'}
+      let update_time = this.state.last_update.toLocaleString('en-AU',date_options);
     if (this.state.ready_to_render){
       let participants = this.generateRowData(this.state.participants);
+      //update_time.setUTCSeconds(this.state.last_update);
       return (
         <div style={{opacity:0.7}}>
           <Table
@@ -93,6 +101,8 @@ class LeaderBoard extends React.Component {
             }
             </TableBody>
           </Table>
+
+          <div style={{padding:'30px 40px 5px 15px',fontFamily:'Roboto, sans-serif',fontSize:'12px'}}> Last updated: {update_time}</div>
         </div>
       );
     }
@@ -106,169 +116,3 @@ class LeaderBoard extends React.Component {
   }
 }
 export default LeaderBoard;
-
-
-/*
-let testdata = {
-    "912" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "912",
-      "mqid" : "45299351",
-      "name" : "casper",
-      "solved_easy" : [ "1","2","3" ],
-      "solved_hard" : [ "21","25" ],
-      "solved_medium" : [ "37" ]
-    },
-    "3254" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "3254",
-      "mqid" : "31574353",
-      "name" : "tintin",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [ "24" ],
-      "solved_medium" : []
-      },
-    "95738" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "95738",
-      "mqid" : "30485289",
-      "name" : "pancho",
-      "solved_easy" : [],
-      "solved_hard" : [],
-      "solved_medium" : []
-      },
-    "12354" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "12354",
-      "mqid" : "48593123",
-      "name" : "some dude",
-      "solved_easy" : [],
-      "solved_hard" : [],
-      "solved_medium" : []
-      },
-    "9784" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "9784",
-      "mqid" : "48931245",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [],
-      "solved_medium" : []
-      },
-    "878" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "878",
-      "mqid" : "48931245",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [ "22" ],
-      "solved_medium" : []
-      },
-    "6920" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "6920",
-      "mqid" : "48931246",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [ "21" ],
-      "solved_medium" : [ "32" ]
-      },
-    "5554" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "5554",
-      "mqid" : "41156384",
-      "name" : "some dude",
-      "solved_easy" : [ "7", "9", "5" ],
-      "solved_hard" : [ "27" ],
-      "solved_medium" : [ "37" ]
-      },
-    "23580" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "23580",
-      "mqid" : "41851049",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [],
-      "solved_medium" : [ "35" ]
-    },
-    "1234" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "1234",
-      "mqid" : "41851049",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [],
-      "solved_medium" : [ "35" ]
-    },
-    "1235" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "1235",
-      "mqid" : "41851049",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [],
-      "solved_medium" : [ "35" ]
-    },
-    "1236" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "1236",
-      "mqid" : "41851049",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [],
-      "solved_medium" : [ "35" ]
-    },
-    "2345" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "2345",
-      "mqid" : "41851049",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [],
-      "solved_medium" : [ "35" ]
-    },
-    "1111" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "1111",
-      "mqid" : "41851049",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [],
-      "solved_medium" : [ "35" ]
-    },
-    "11" : {
-      "email" : "user@host.com",
-      "fullname" : "Dunno",
-      "id" : "11",
-      "mqid" : "41851049",
-      "name" : "some dude",
-      "solved_easy" : [ "2" ],
-      "solved_hard" : [],
-      "solved_medium" : [ "35" ]
-    },
-    "19089" : {
-      "email" : "daniel.sutantyo@mq.edu.au",
-      "fullname" : "Daniel Sutantyo",
-      "id" : "19089",
-      "mqid" : "mq20045949",
-      "name" : "sutantyo",
-      "solved_easy" : [ "2", "3" ],
-      "solved_hard" : [ "25", "27" ],
-      "solved_medium" : [ "36" ]
-    }
-}
-*/

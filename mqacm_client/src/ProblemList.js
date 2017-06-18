@@ -29,7 +29,7 @@ class ProblemList extends React.Component {
   }
 
   componentWillMount(){
-    firebase.database().ref(this.props.set).once('value', snapshot =>{
+    firebase.database().ref(this.props.set).on('value', snapshot =>{
       this.setState({
           ready_to_render: true,
           problemset : snapshot.val()
@@ -92,8 +92,10 @@ class ProblemList extends React.Component {
               {problems.map( problem =>
                   <TableRow key={problem.num} style={{height:'20px'}}>
                       <TableRowColumn style={{width:'40px'}}>{problem.num}</TableRowColumn>
-                      <TableRowColumn style={{width:'320px'}} ><a href={"https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem="+problem.pid} target={'_blank'}>
-                      {problem.title}</a></TableRowColumn>
+                      <TableRowColumn style={{width:'320px'}} >
+                        <a href={"https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem="+problem.pid} target={'_blank'}>
+                        {problem.title}</a><
+                      /TableRowColumn>
                       <TableRowColumn style={{width:'100px'}}>{problem.level}</TableRowColumn>
                       <TableRowColumn style={{whiteSpace:'normal',wordWrap:'break-word'}}>{problem.comment}</TableRowColumn>
                   </TableRow>

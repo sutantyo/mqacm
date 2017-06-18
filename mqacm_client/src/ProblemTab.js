@@ -6,8 +6,9 @@ import {grey600} from 'material-ui/styles/colors';
 
 let paperStyle = {
   fontSize: '14px',
-  backgroundColor: 'rgba(255,255,255,0.0)',
+  backgroundColor: 'rgba(255,255,255,0.7)',
   padding: '20px 15px 10px 15px',
+  marginBottom: '8px',
   color: grey600
 }
 
@@ -18,6 +19,12 @@ class ProblemTab extends Component{
               <Paper style={paperStyle}>
                 <div style={{marginLeft:'20px'}}>
                 <p>
+                  <b>
+                  If you are new to the competition, please start by reading the
+                  instructions tab.</b>
+                </p>
+
+                <p>
                   Here is the list of questions that we are using for this year's
                   competition.
                   The questions are grouped according to their level of difficulty:
@@ -27,8 +34,10 @@ class ProblemTab extends Component{
                   hours.
                 </p>
                 <p>
-                  Each question also has a level, either 115, 125, or 225.
-                  A question marked with 115 should be doable if you have done COMP115,
+                  Each question also has a level, either 115, 125, or 225, and you can
+                  think of them as the prerequisite for the question.
+                  For example, a question marked with 115 is intended for students who have done
+                  COMP115
                   whereas a question marked with 125 may assume a few things that
                   are taught in COMP125, e.g. using Java libraries.
                 </p>

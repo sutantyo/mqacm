@@ -6,11 +6,12 @@ import { tomorrowNightEighties } from 'react-syntax-highlighter/dist/styles';
 import {grey600} from 'material-ui/styles/colors';
 
 let paperStyle = {
-  backgroundColor: 'rgba(255,255,255,0.5)',
-  padding: '20px 15px 10px 15px',
+  backgroundColor: 'rgba(255,255,255,0.7)',
+  padding: '2px 15px 10px 15px',
   marginTop: '8px',
   marginLeft: '2%',
   marginRight: '2%',
+  marginBottom: '8px',
   fontSize: '14px',
   lineHeight: '1.5',
   color: grey600
@@ -25,50 +26,54 @@ class Instructions extends Component{
     return (
       <div>
         <Paper style={paperStyle}>
-          This section is still a work in progress. Please email any suggestions or questions to
-          daniel(dot)sutantyo(at)mq(dot)edu(dot)au.
-        </Paper>
-        <Paper style={paperStyle}>
+          <h2>Registration</h2>
           <p>
-            To participate in this contest, please create an account on
-            <a href='https://uva.onlinejudge.org' target='_blank' rel='noopener noreferrer'>
-            UVA online judge website</a>,
-            which is the site that we are using to judge the correctness
-            of your submission. Once you have an account, click on
-            the Problem Set tab and browse through the problems.
-            Clicking on the problem title will take you to problem
-            description and submission page. For each problem, you will see links to
-            submit and debug (uDebug).
+            To participate in this contest, please begin by creating an account
+            on <a href='https://uva.onlinejudge.org' target='_blank' rel='noopener noreferrer'>UVA online judge website</a>.
+            The UVA website is where you will be submitting your code.
+            Once you have registered, please let us know of your UVA Judge ID (or alternatively, your username)
+            so that we can add you to the leaderboard.
+            You can start attempting the questions right away since the leaderboard uses UVA database.
           </p>
           <p>
-            The correctness of your code is determined by the output it produces when given
-            the test input data. The question almost always contain a sample input and its
-            corresponding output.
-            Your submission will be judged by extra test cases that are not shown in the
+            You can get started by looking at the warm-up questions on the Problem Set tab.
+            For each problem, the link will take you to the UVA page containing its description,
+            as well as links to submit and debug (uDebug).
+          </p>
+          <p>
+            For each problem, you need to submit a source code in Java, C/C++ or Python.
+            Your source code will then be compiled by the UVA server and tested with
+            some input data.
+            The correctness of your submission is determined by the output it produces when given
+            the test input data.
+            In each problem description, you can almost always see a sample input and its
+            expected output.
+            However, your submission will be judged by extra test cases that are not shown in the
             problem description, and you can be sure that these hidden test cases are the
             tricky ones.
           </p>
           <p>
-            Fortunately, to help you in submitting correctly, the site also features uDebug.
-            You can try different inputs on uDebug and it will give you the expected outputs
-            for each of them.
-            You can also paste your code's output there to see the differences with the
+            To help you in submitting a correct solution, you should also use uDebug.
+            For each problem, the uDebug page lets you try different input data on an actual working
+            code, so that you can get the expected output.
+            Given an input data, you can also paste your code's output there to see the differences with the
             expected output.
-            uDebug also has extensive test data that you can try on your code.
+            Perhaps the most important feature of uDebug is that it provides you with extra test data
+            which often contain the tricky corner cases that you missed.
           </p>
         </Paper>
         <Paper style={paperStyle}>
-          <h1>How to submit using Java</h1>
+          <h2>How to submit using Java</h2>
           <p>
-          Please read
-          the official <a href="https://uva.onlinejudge.org/index.php?option=com_content&task=view&id=15&Itemid=30">
-          guideline on how to submit a Java program
-          </a>.
+
           Note that your source code must be submitted as a single file containing the
           class Main which serves as the starting point for the program via the public static
           main method.
           You can have several classes on the same file, but you cannot declare any packages.
-          Please see the sample code below.
+          Please see the sample code below, and for a more complete
+          information, <a href="https://uva.onlinejudge.org/index.php?option=com_content&task=view&id=15&Itemid=30">
+          the official guideline on how to submit a Java program
+            </a>.
           </p>
           <p>
           If you are using Eclipse, then I suggest that you create a new java project for each question
@@ -85,7 +90,6 @@ class Instructions extends Component{
           the program and for every three integers you type in, the maximum will be printed whenever
           you press enter. To stop the program, press ctrl+z (Windows) or ctrl+d (Unix/Mac).
           </p>
-
           <SyntaxHighlighter language='java' style={tomorrowNightEighties}>
             {codeString}
           </SyntaxHighlighter>
@@ -93,13 +97,13 @@ class Instructions extends Component{
           Of course testing your program by inputting the test data can be cumbersome.
           The recommended method is to create a text file containing the input and then
           feed this to your program.
-          Unfortunately Eclipse is not very good when it comes to reading stdin.
-          You need to do this via the command line: go to the folder that contains your
-          executable and run
+          Unfortunately Eclipse is not very good when it comes to reading stdin and the best
+          method for this is to do it via the command line.
+          From the command line, go to the folder that contains your Java executable,
+          create a file containing the input data (say in.txt), then run
           <SyntaxHighlighter language='bash' style={tomorrowNightEighties}>
             {bashString}
           </SyntaxHighlighter>
-          where in.txt is the file containing your sample input.
           The output of your code will be written into the file out.txt.
           If you want to see the output on the screen, then you can simply delete
           the "> output.txt" bit.
@@ -112,6 +116,20 @@ class Instructions extends Component{
 export default Instructions;
 
 
-let codeString = "import.java.io.*;\nimport.java.util.*;\n\nclass Main\n{\npublic static void main (String args[]){\nScanner in = new Scanner(new InputStreamReader(System.in));\nwhile (in.hasNext()){\nint l = in.nextInt();\nint m = in.nextInt();\nint r = in.nextInt();\nint out = (l > m) ? ((l > r) ? l : r) : ((m > r) ? m : r);\nSystem.out.println(out);\n}\n}\n}"
+let codeString = `
+import.java.io.*;
+import.java.util.*;
+
+class Main{
+  public static void main (String args[]){
+    Scanner in = new Scanner(new InputStreamReader(System.in));
+    while (in.hasNext()){int l = in.nextInt();
+      int m = in.nextInt();
+      int r = in.nextInt();
+      int out = (l > m) ? ((l > r) ? l : r) : ((m > r) ? m : r);
+      System.out.println(out);
+    }
+  }
+}`
 
 let bashString = "java Main < in.txt > out.txt"
