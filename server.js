@@ -59,8 +59,15 @@ firebase.auth().signInWithEmailAndPassword(process.env.FIREBASE_ADMIN_IDENTIFIER
       });
   });
 
-schedule.scheduleJob('30 * * * *', function(){
-    database.initialise_database(function(){
+schedule.scheduleJob('*/30 * * * *', function(){
+    var authClient2 = new google.auth.JWT(
+      process.env.GAPI_CLIENT_EMAIL,
+      null,
+      process.env.GAPI_CLIENT_PRIVATE_KEY.replace(/\\n/g,'\n'),
+      ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+      null
+    );
+    database.initialise_database(authClient2,function(){
       firebase.database().ref().update({
         last_update : Date.now()
       });

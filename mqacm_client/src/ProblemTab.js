@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Paper from 'material-ui/Paper';
 import ProblemList from './ProblemList';
-import {grey600} from 'material-ui/styles/colors';
+import TextField from 'material-ui/TextField';
+import * as firebase from 'firebase';
+import {orange500,grey600,greenA700,red500} from 'material-ui/styles/colors';
 
 
 let paperStyle = {
@@ -12,7 +14,54 @@ let paperStyle = {
   color: grey600
 }
 
+let inputBoxStyle = {
+  paddingLeft: '18px',
+  marginRight: '22px',
+  width: '180px',
+  fontSize: '14px'
+}
+
+
 class ProblemTab extends Component{
+  constructor(){
+    super();
+    this.state = {
+      box_warning: "Press Enter to check progress",
+      box_color: orange500,
+      solved_warmup : null,
+      solved_easy : null,
+      solved_medium : null,
+      solved_hard : null
+    };
+  }
+
+  checkRanking(event){
+    if (event.charCode === 13){
+      event.preventDefault();
+      let id = parseInt(event.target.value,10);
+      if (id > 0){
+        firebase.database().ref('participants').child(id).on('value', snapshot =>{
+          if (snapshot.val() != null){
+            this.setState({
+              box_warning: "Retrieved data for " + id,
+              box_color: greenA700,
+              solved_warmup : snapshot.val().solved_warmup,
+              solved_easy : snapshot.val().solved_easy,
+              solved_medium : snapshot.val().solved_medium,
+              solved_hard : snapshot.val().solved_hard
+            })
+          }
+          else {
+            this.setState({
+              box_warning: "User is not registered",
+              box_color: red500
+            })
+          }
+        });
+      }
+    }
+  }
+
   render(){
     return (
         <div>
@@ -37,11 +86,24 @@ class ProblemTab extends Component{
                   Each question also has a level, either 115, 125, or 225, and you can
                   think of them as the prerequisite for the question.
                   For example, a question marked with 115 is intended for students who have done
-                  COMP115
+                  COMP115,
                   whereas a question marked with 125 may assume a few things that
-                  are taught in COMP125, e.g. using Java libraries.
+                  are taught in COMP125, e.g. using Java libraries such as Stack or
+                  ArrayList.
+                  These are only guidelines, and in some cases the question might end up
+                  being easier or harder that we expected, so apologies in advance!
+                  Do let us know if you think the guideline is off.
+                </p>
+                <p>
+                  You can enter your UVA id in the text box to see which questions you (or someone else)
+                  have done.
                 </p>
                 </div>
+                <TextField hintText="Enter your UVA ID here"
+                  errorText={this.state.box_warning}
+                  errorStyle={{color:this.state.box_color}}
+                  onKeyPress={this.checkRanking.bind(this)}
+                  style={inputBoxStyle}/>
               </Paper>
               <Paper style={paperStyle}>
                 <p style={{marginLeft:'20px'}}>
@@ -52,7 +114,7 @@ class ProblemTab extends Component{
                   Most, if not all, of these questions should be doable
                   even if you are still doing COMP115.
                 </p>
-                <ProblemList
+                <ProblemList solved={this.state.solved_warmup}
                   title="Warm-up Problems"
                   set="problemset_warmup">
                 </ProblemList>
@@ -64,10 +126,10 @@ class ProblemTab extends Component{
                   mathematics.
                   They may be a bit tricky and
                   require you to read the
-                  problem description carefully or
-                  be mindful of corner cases.
+                  problem description carefully.
+                  Be mindful of corner cases!
                 </p>
-                <ProblemList
+                <ProblemList solved={this.state.solved_easy}
                   title="Easy Problems"
                   set="problemset_easy">
                 </ProblemList>
@@ -78,7 +140,7 @@ class ProblemTab extends Component{
                   computer science algorithms, such as graph algorithms
                   or discrete mathematics.
                 </p>
-                <ProblemList
+                <ProblemList solved={this.state.solved_medium}
                   title="Medium Problems"
                   set="problemset_medium">
                 </ProblemList>
@@ -89,7 +151,7 @@ class ProblemTab extends Component{
                   dynamic programming to avoid exceeding the time limit
                   constraint.
                 </p>
-                <ProblemList
+                <ProblemList solved={this.state.solved_hard}
                   title="Hard Problems"
                   set="problemset_hard">
                 </ProblemList>
