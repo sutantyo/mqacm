@@ -10,6 +10,9 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+import FontIcon from 'material-ui/FontIcon';
+import {greenA700} from 'material-ui/styles/colors';
+
 
 
 let cardStyle = {
@@ -24,6 +27,7 @@ class ProblemList extends React.Component {
     super();
     this.state = {
       ready_to_render : false,
+      participant : null,
       problemset : []
     }
   }
@@ -38,11 +42,29 @@ class ProblemList extends React.Component {
     })
   }
 
-  generateRowData(data){
+  tickbox(solved){
+    if (solved === true){
+      return <FontIcon className="material-icons" style={{fontSize:'18px',color:greenA700}}>done</FontIcon>
+    }
+    else {
+      return <div></div>
+    }
+  }
+
+  generateRowData(data,solved){
     let problems = [];
+    let solved_set = new Set(solved);
+
     for (let key in data){
+      if (solved_set.has(parseInt(data[key].pid,10))){
+        data[key].solved = true;
+      }
+      else{
+        data[key].solved = false;
+      }
       problems.push(data[key]);
     }
+
     problems.sort(function(a,b){
       return (a.level - b.level);
     });
@@ -52,7 +74,7 @@ class ProblemList extends React.Component {
 
   render(){
     if (this.state.ready_to_render){
-      let problems = this.generateRowData(this.state.problemset);
+      let problems = this.generateRowData(this.state.problemset, this.props.solved);
       let cardTitle = this.props.title + " (" + problems.length + " problems)";
       return (
         <div>
@@ -79,8 +101,9 @@ class ProblemList extends React.Component {
               >
                 <TableRow style={{height:'28px'}}>
                   <TableHeaderColumn style={{width:'40px'}}>ID</TableHeaderColumn>
-                  <TableHeaderColumn style={{width:'320px'}}>Title</TableHeaderColumn>
-                  <TableHeaderColumn style={{width:'100px'}}>Level</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:'240px'}}>Title</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:'20px'}}></TableHeaderColumn>
+                  <TableHeaderColumn style={{width:'400px'}}>Level</TableHeaderColumn>
                   <TableHeaderColumn>Comment</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
@@ -91,12 +114,15 @@ class ProblemList extends React.Component {
               >
               {problems.map( problem =>
                   <TableRow key={problem.num} style={{height:'20px'}}>
-                      <TableRowColumn style={{width:'40px'}}>{problem.num}</TableRowColumn>
-                      <TableRowColumn style={{width:'320px'}} >
+                      <TableRowColumn style={{width:'40px',textAlign:'right'}}>{problem.num}</TableRowColumn>
+                      <TableRowColumn style={{width:'240px'}} >
                         <a href={"https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem="+problem.pid} target={'_blank'}>
                         {problem.title}</a><
                       /TableRowColumn>
-                      <TableRowColumn style={{width:'100px'}}>{problem.level}</TableRowColumn>
+                      <TableRowColumn style={{width:'20px',textAlign:'center'}}>
+                        {this.tickbox(problem.solved)}
+                      </TableRowColumn>
+                      <TableRowColumn style={{width:'400px'}}>{problem.level}</TableRowColumn>
                       <TableRowColumn style={{whiteSpace:'normal',wordWrap:'break-word'}}>{problem.comment}</TableRowColumn>
                   </TableRow>
                 )
