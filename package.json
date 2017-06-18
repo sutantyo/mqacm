@@ -4,7 +4,7 @@
   "description": "simple react app to display MQ ACM competition leaderboard",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js"
   },
   "author": "Daniel Sutantyo",
   "license": "ISC",
