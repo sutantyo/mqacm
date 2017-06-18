@@ -1,0 +1,20 @@
+# This is a sample build configuration for Python.
+# Check our guides at https://confluence.atlassian.com/x/VYk8Lw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:6.9.1
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - export MY_SSH_KEY=$APP_STAGING_SSH_KEY
+            - export SERVER_NAME=app-staging.science.mq.edu.au
+            - export APP_CNAME=$BITBUCKET_REPO_SLUG-staging.science.mq.edu.au
+            - export NODE_ENV=staging
+            - npm install
+            - cd ./mqacm_client && npm install && npm run build
+            # - npm run build
+            - cd ../
+            - chmod +x ./deployment/deploy.bash && ./deployment/deploy.bash # Run this bash script to do the heavy lifting of deployment

@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd mqacm_client && npm install  && npm run build"
   },
   "author": "Daniel Sutantyo",
   "license": "ISC",
