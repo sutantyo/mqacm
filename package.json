@@ -4,7 +4,8 @@
   "description": "simple react app to display MQ ACM competition leaderboard",
   "main": "server.js",
   "scripts": {
-    "starts": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "cd mqacm_client && npm install  && npm run build"
   },
   "author": "Daniel Sutantyo",
   "license": "ISC",
