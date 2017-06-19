@@ -13,11 +13,14 @@ let cardStyle = {
 let titleStyle = {
   fontSize: '20px',
   color: grey700,
-  opacity: 1.0
+  opacity: 1.0,
+  paddingLeft: '10px'
 }
 let textStyle = {
   color: grey700,
-  opacity: 1.0
+  opacity: 1.0,
+  paddingLeft: '30px',
+  marginTop: '0px'
 }
 
 class NewsBar extends Component{

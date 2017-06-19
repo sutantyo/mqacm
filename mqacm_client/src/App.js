@@ -10,8 +10,8 @@ import {grey700} from 'material-ui/styles/colors';
 
 let headerStyle={
   //fontFamily: '"Gill Sans","Gill Sans MT",Calibri,sans-serif',
-  //fontFamily: 'Roboto, sans-serif',
-  fontFamily: '"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif',
+  fontFamily: 'Roboto, sans-serif',
+  //fontFamily: '"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif',
   fontSize: '20px',
   color: grey700
 }
