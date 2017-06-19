@@ -27,6 +27,9 @@ sed -i "s/ldap_replaced_by_bitbucket/$AUTH_LDAP_BIND_PASSWORD_EXAM_PROCESSING/g"
 sed -i "s/django_environment_replaced_by_bitbucket/$DJANGO_ENVIRONMENT/g" ./deployment/docker-compose.yml
 sed -i "s/firebase_admin_identifier_replaced_by_bitbucket/$FIREBASE_ADMIN_IDENTIFIER/g" ./deployment/docker-compose.yml
 sed -i "s/firebase_admin_password_replaced_by_bitbucket/$FIREBASE_ADMIN_PASSWORD/g" ./deployment/docker-compose.yml
+sed -i "s/gapi_client_private_key_replaced_by_bitbucket/$GAPI_CLIENT_PRIVATE_KEY/g" ./deployment/docket-compose.yml
+sed -i "s/gapi_client_email_replaced_by_bitbucket/$GAPI_CLIENT_EMAIL/g" ./deployment/docket-compose.yml
+sed -i "s/gapi_client_id_replaced_by_bitbucket/$GAPI_CLIENT_ID/g" ./deployment/docket-compose.yml
 
 
 tar -cf ~/$BITBUCKET_REPO_SLUG.tar.gz .

@@ -13,3 +13,6 @@ services:
         - NODE_ENV=production
         - FIREBASE_ADMIN_IDENTIFIER=firebase_admin_identifier_replaced_by_bitbucket
         - FIREBASE_ADMIN_PASSWORD=firebase_admin_password_replaced_by_bitbucket
+        - GAPI_CLIENT_PRIVATE_KEY=gapi_client_private_key_replaced_by_bitbucket
+        - GAPI_CLIENT_EMAIL=gapi_client_email_replaced_by_bitbucket
+        - GAPI_CLIENT_ID=gapi_client_id_replaced_by_bitbucket
