@@ -8,18 +8,8 @@ const google = require('googleapis');
 // start the app
 const app = express();
 
-/*
-function f1(n, callback){
-  if (n === 0)
-    return;
-  setTimeout(function(){
-    console.log(n);
-  },1000);
-  callback(n-1,f1);
-}
-
-f1(10,f1);
-*/
+var b64string = process.env.GAPI_CLIENT_PRIVATE_KEY;
+var key = new Buffer(b64string, 'base64').toString("ascii").replace(/\\n/g,'\n');
 
 firebase.initializeApp({
   apiKey:"AIzaSyDcj5L-4niX7cB2ZMlwmaIwxUu81PI4u8I",
@@ -30,7 +20,7 @@ firebase.initializeApp({
 let authClient = new google.auth.JWT(
   process.env.GAPI_CLIENT_EMAIL,
   null,
-  process.env.GAPI_CLIENT_PRIVATE_KEY.replace(/\\n/g,'\n'),
+  key.replace(/\\n/g,'\n'),
   ['https://www.googleapis.com/auth/spreadsheets.readonly'],
   null
 );
@@ -63,7 +53,7 @@ schedule.scheduleJob('*/30 * * * *', function(){
     var authClient2 = new google.auth.JWT(
       process.env.GAPI_CLIENT_EMAIL,
       null,
-      process.env.GAPI_CLIENT_PRIVATE_KEY.replace(/\\n/g,'\n'),
+      key.replace(/\\n/g,'\n'),
       ['https://www.googleapis.com/auth/spreadsheets.readonly'],
       null
     );
