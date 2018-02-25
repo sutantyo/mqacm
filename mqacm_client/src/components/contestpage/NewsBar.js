@@ -27,7 +27,9 @@ class NewsBar extends Component{
   constructor(){
     super();
     this.state = {
-      news : {}
+      news : {},
+      title: "Contest News",
+      initiallyExpanded: false
     };
   }
 
@@ -43,11 +45,12 @@ class NewsBar extends Component{
     return (
       <div>
         <Card
+          initiallyExpanded={this.state.initiallyExpanded}
           style = {cardStyle}
         >
           <CardHeader
             actAsExpander={true}
-            title="Latest News"
+            title={this.state.title}
             titleStyle={titleStyle}
             showExpandableButton={true}
           />

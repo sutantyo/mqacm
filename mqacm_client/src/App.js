@@ -1,30 +1,21 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
-import LeaderBoard from './LeaderBoard';
-import ProblemTab from './ProblemTab';
-import Instructions from './Instructions';
-import NewsBar from './NewsBar';
+import Homepage from './components/homepage/Homepage';
+import ContestPage from './components/contestpage/ContestPage';
+import Header from './components/Header';
+import LoginForm from './components/accounts/LoginForm';
 import {Tabs,Tab} from 'material-ui/Tabs';
-import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
-import {grey700} from 'material-ui/styles/colors';
-
-let headerStyle={
-  //fontFamily: '"Gill Sans","Gill Sans MT",Calibri,sans-serif',
-  fontFamily: 'Roboto, sans-serif',
-  //fontFamily: '"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif',
-  fontSize: '20px',
-  color: grey700
-}
-
-let appBodyStyle = {
-  marginLeft: '5%',
-  marginRight: '5%'
-}
 
 let tabStyle = {
   backgroundColor: 'rgba(255,255,255,0.5)',
   height: '800px',
   overflow: 'scroll'
+}
+
+let appBodyStyle = {
+  marginLeft: '5%',
+  marginRight: '5%'
 }
 
 class App extends Component {
@@ -40,42 +31,34 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-       <div className="App-body" style={appBodyStyle}>
-        <Toolbar>
-          <ToolbarGroup style={headerStyle}>
-            <ToolbarTitle style={headerStyle} text="Macquarie University Programming Contest Page"/>
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <img src="mq_horizontal.png?" alt="Macquarie University" style={{width:'200px'}}/>
-          </ToolbarGroup>
-        </Toolbar>
+      <Router>
+        <div className="App">
+         <div className="App-body" style={appBodyStyle}>
+          <div>
+            <Header />
+            <Tabs>
+              <Tab label="Home">
+                <div style={tabStyle}>
+                  <Homepage />
+                </div>
+              </Tab>
+              <Tab label="Contest Page">
+                <div style={tabStyle}>
+                  <ContestPage />
+                </div>
+              </Tab>
+              <Tab label="Login/Register">
+                <div style={tabStyle}>
+                  <LoginForm />
+                </div>
+              </Tab>
+            </Tabs>
 
-        <NewsBar/>
-
-        <Tabs>
-
-          <Tab label="Leaderboard">
-            <div style={tabStyle}>
-              <LeaderBoard />
-            </div>
-          </Tab>
-
-          <Tab label="Problem Set">
-            <div style={tabStyle}>
-              <ProblemTab />
-            </div>
-          </Tab>
-
-          <Tab label="Instructions">
-            <div style={tabStyle}>
-              <Instructions />
-            </div>
-          </Tab>
-        </Tabs>
-
-      </div>
-      </div>
+            <Route exact={true} path="/" component={Homepage} />
+          </div>
+          </div>
+        </div>
+      </Router>
     );
   }
 }
