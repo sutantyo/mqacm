@@ -3,20 +3,7 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { tomorrowNightEighties } from 'react-syntax-highlighter/dist/styles';
-import {grey600} from 'material-ui/styles/colors';
-
-let paperStyle = {
-  backgroundColor: 'rgba(255,255,255,0.7)',
-  padding: '2px 15px 10px 15px',
-  marginTop: '8px',
-  marginLeft: '2%',
-  marginRight: '2%',
-  marginBottom: '8px',
-  fontSize: '14px',
-  lineHeight: '1.5',
-  color: grey600
-
-}
+import * as styles from '../../styles/components/instructions.js';
 
 class Instructions extends Component{
   componentWillMount(){
@@ -25,7 +12,7 @@ class Instructions extends Component{
   render(){
     return (
       <div>
-        <Paper style={paperStyle}>
+        <Paper style={styles.paperStyle}>
           <h2>Registration</h2>
           <p>
             To participate in this contest, please begin by creating an account
@@ -62,7 +49,7 @@ class Instructions extends Component{
             which often contain the tricky corner cases that you missed.
           </p>
         </Paper>
-        <Paper style={paperStyle}>
+        <Paper style={styles.paperStyle}>
           <h2>How to submit using Java</h2>
           <p>
 

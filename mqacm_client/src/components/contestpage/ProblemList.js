@@ -12,15 +12,7 @@ import {
 } from 'material-ui/Table';
 import FontIcon from 'material-ui/FontIcon';
 import {greenA700} from 'material-ui/styles/colors';
-
-
-
-let cardStyle = {
-  opacity: 0.7,
-  borderRadius: '4px',
-  marginLeft: '2%',
-  marginRight: '2%'
-}
+import * as styles from '../../styles/components/problemlist';
 
 class ProblemList extends React.Component {
   constructor(){
@@ -78,7 +70,7 @@ class ProblemList extends React.Component {
       let cardTitle = this.props.title + " (" + problems.length + " problems)";
       return (
         <div>
-          <Card style = {cardStyle}>
+          <Card style = {styles.cardStyle}>
           <CardHeader
               actAsExpander={true}
               title = {cardTitle}
@@ -117,8 +109,8 @@ class ProblemList extends React.Component {
                       <TableRowColumn style={{width:'40px',textAlign:'right'}}>{problem.num}</TableRowColumn>
                       <TableRowColumn style={{width:'240px'}} >
                         <a href={"https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem="+problem.pid} target={'_blank'}>
-                        {problem.title}</a><
-                      /TableRowColumn>
+                        {problem.title}</a>
+                      </TableRowColumn>
                       <TableRowColumn style={{width:'20px',textAlign:'center'}}>
                         {this.tickbox(problem.solved)}
                       </TableRowColumn>

@@ -2,34 +2,13 @@ import React, { Component } from 'react';
 import * as firebase from 'firebase';
 
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-import {grey700} from 'material-ui/styles/colors';
-
-let cardStyle = {
-  backgroundColor: 'rgba(255,255,255,0.5)',
-  marginTop: '8px',
-  marginBottom: '8px'
-}
-
-let titleStyle = {
-  fontSize: '20px',
-  color: grey700,
-  opacity: 1.0,
-  paddingLeft: '10px'
-}
-let textStyle = {
-  color: grey700,
-  opacity: 1.0,
-  paddingLeft: '30px',
-  marginTop: '0px'
-}
+import * as styles from '../../styles/components/newsbar';
 
 class NewsBar extends Component{
   constructor(){
     super();
     this.state = {
-      news : {},
-      title: "Contest News",
-      initiallyExpanded: false
+      news : {}
     };
   }
 
@@ -45,16 +24,15 @@ class NewsBar extends Component{
     return (
       <div>
         <Card
-          initiallyExpanded={this.state.initiallyExpanded}
-          style = {cardStyle}
+          style = {styles.cardStyle}
         >
           <CardHeader
             actAsExpander={true}
-            title={this.state.title}
-            titleStyle={titleStyle}
+            title={"Contest News"}
+            titleStyle={styles.titleStyle}
             showExpandableButton={true}
           />
-        <CardText expandable={true} style={textStyle}>
+        <CardText expandable={true} style={styles.textStyle}>
           <p>
             {this.state.news}
           </p>

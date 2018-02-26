@@ -1,18 +1,29 @@
-import React from 'react';
-import Newsbar from '../contestpage/NewsBar';
+import React, { Component } from 'react';
+import Paper from 'material-ui/Paper';
+import * as styles from '../../styles/components/instructions';
 
-export default class Upcoming extends Newsbar {
+export default class Upcoming extends Component {
 	constructor(){
 		super();
 		this.state = {
-			news: {},
-			title: "Upcoming Events",
-			initiallyExpanded: true
+			upcoming: {},
 		};
 	}
 	componentWillMount(){
 	    this.setState({
-	        news: "Upcoming dates"
+	        upcoming: "Upcoming dates"
     	});
+	}
+	render(){
+		return (
+			<div>
+				<Paper style={styles.paperStyle}>
+					<h2>Upcoming Events</h2>
+					<p>
+						{this.state.upcoming}
+					</p>
+				</Paper>
+			</div>
+		);
 	}
 }

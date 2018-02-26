@@ -4,23 +4,7 @@ import ProblemList from './ProblemList';
 import TextField from 'material-ui/TextField';
 import * as firebase from 'firebase';
 import {orange500,grey600,greenA700,red500} from 'material-ui/styles/colors';
-
-
-let paperStyle = {
-  fontSize: '14px',
-  backgroundColor: 'rgba(255,255,255,0.7)',
-  padding: '20px 15px 10px 15px',
-  marginBottom: '8px',
-  color: grey600
-}
-
-let inputBoxStyle = {
-  paddingLeft: '18px',
-  marginRight: '22px',
-  width: '180px',
-  fontSize: '14px'
-}
-
+import * as styles from '../../styles/components/problemtab';
 
 class ProblemTab extends Component{
   constructor(){
@@ -65,7 +49,7 @@ class ProblemTab extends Component{
   render(){
     return (
         <div>
-              <Paper style={paperStyle}>
+              <Paper style={styles.paperStyle}>
                 <div style={{marginLeft:'20px'}}>
                 <p>
                   <b>
@@ -103,9 +87,9 @@ class ProblemTab extends Component{
                   errorText={this.state.box_warning}
                   errorStyle={{color:this.state.box_color}}
                   onKeyPress={this.checkRanking.bind(this)}
-                  style={inputBoxStyle}/>
+                  style={styles.inputBoxStyle}/>
               </Paper>
-              <Paper style={paperStyle}>
+              <Paper style={styles.paperStyle}>
                 <p style={{marginLeft:'20px'}}>
                   Warm-up problems are simple and straightforward problems to
                   get you started in solving ACM problems.
@@ -119,7 +103,7 @@ class ProblemTab extends Component{
                   set="problemset_warmup">
                 </ProblemList>
               </Paper>
-              <Paper style={paperStyle}>
+              <Paper style={styles.paperStyle}>
                 <p style={{marginLeft:'20px'}}>
                   These are straightforward problems which are solvable
                   using basic problem-solving approach and high-school
@@ -134,7 +118,7 @@ class ProblemTab extends Component{
                   set="problemset_easy">
                 </ProblemList>
               </Paper>
-              <Paper style={paperStyle}>
+              <Paper style={styles.paperStyle}>
                 <p style={{marginLeft:'20px'}}>
                   These problems may require knowledge of some basic
                   computer science algorithms, such as graph algorithms
@@ -145,7 +129,7 @@ class ProblemTab extends Component{
                   set="problemset_medium">
                 </ProblemList>
               </Paper>
-              <Paper style={paperStyle}>
+              <Paper style={styles.paperStyle}>
                 <p style={{marginLeft:'20px'}}>
                   These are the hardest problem. You may need to implement
                   dynamic programming to avoid exceeding the time limit

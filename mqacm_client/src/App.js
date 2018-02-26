@@ -4,19 +4,8 @@ import './App.css';
 import Homepage from './components/homepage/Homepage';
 import ContestPage from './components/contestpage/ContestPage';
 import Header from './components/Header';
-import LoginForm from './components/accounts/LoginForm';
 import {Tabs,Tab} from 'material-ui/Tabs';
-
-let tabStyle = {
-  backgroundColor: 'rgba(255,255,255,0.5)',
-  height: '800px',
-  overflow: 'scroll'
-}
-
-let appBodyStyle = {
-  marginLeft: '5%',
-  marginRight: '5%'
-}
+import * as styles from './styles/app';
 
 class App extends Component {
   constructor(){
@@ -29,32 +18,26 @@ class App extends Component {
   componentDidMount(){
   }
 
+
   render() {
     return (
       <Router>
         <div className="App">
-         <div className="App-body" style={appBodyStyle}>
+         <div className="App-body" style={styles.appBodyStyle}>
           <div>
             <Header />
             <Tabs>
               <Tab label="Home">
-                <div style={tabStyle}>
+                <div style={styles.tabStyle}>
                   <Homepage />
                 </div>
               </Tab>
               <Tab label="Contest Page">
-                <div style={tabStyle}>
+                <div style={styles.tabStyle}>
                   <ContestPage />
                 </div>
               </Tab>
-              <Tab label="Login/Register">
-                <div style={tabStyle}>
-                  <LoginForm />
-                </div>
-              </Tab>
             </Tabs>
-
-            <Route exact={true} path="/" component={Homepage} />
           </div>
           </div>
         </div>

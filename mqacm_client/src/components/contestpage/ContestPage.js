@@ -5,12 +5,7 @@ import ProblemTab from './ProblemTab';
 import Instructions from './Instructions';
 import NewsBar from './NewsBar';
 import {Tabs,Tab} from 'material-ui/Tabs';
-
-let tabStyle = {
-  backgroundColor: 'rgba(255,255,255,0.5)',
-  height: '800px',
-  overflow: 'scroll'
-}
+import * as styles from '../../styles/components/contestpage';
 
 const ContestPage = () => (
 	<div>
@@ -18,19 +13,19 @@ const ContestPage = () => (
 
 	    <Tabs>
 	    	<Tab label="Leaderboard">
-	            <div style={tabStyle}>
+	            <div style={styles.tabStyle}>
 	                <LeaderBoard />
 	            </div>
 	        </Tab>
 
 	        <Tab label="Problem Set">
-	            <div style={tabStyle}>
+	            <div style={styles.tabStyle}>
 	                <ProblemTab />
 	            </div>
 	        </Tab>
 
 	        <Tab label="Instructions">
-	            <div style={tabStyle}>
+	            <div style={styles.tabStyle}>
 	                <Instructions />
 	            </div>
 	        </Tab>
