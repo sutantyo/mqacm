@@ -4,6 +4,7 @@ import './App.css';
 import Homepage from './components/homepage/Homepage';
 import ContestPage from './components/contestpage/ContestPage';
 import Header from './components/Header';
+import ProfilePage from './components/profilepage/ProfilePage';
 import {Tabs,Tab} from 'material-ui/Tabs';
 import * as styles from './styles/app';
 
@@ -35,6 +36,11 @@ class App extends Component {
               <Tab label="Contest Page">
                 <div style={styles.tabStyle}>
                   <ContestPage />
+                </div>
+              </Tab>
+              <Tab label = "Profile">
+                <div style={styles.tabStyle}>
+                  <ProfilePage />
                 </div>
               </Tab>
             </Tabs>
