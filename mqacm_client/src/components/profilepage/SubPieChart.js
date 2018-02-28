@@ -134,17 +134,26 @@ const createPieData = (subs) => {
 	];
 }
 
+let pieStyle = {
+	display: "flex",
+	"justify-content": "space-evenly" 
+}
+
 const SubTypePieChart = (props) => {
 	const chartData = createPieData(props.data);
 	let totalSubs = 0;
 	chartData.forEach((type) => totalSubs += type.value);
 	const chartBreakdown = chartData.sort((a, b) => b.value-a.value).filter((countObj) => countObj.value > 0);
 	return (
-		<div>
-			<PieChart data={chartData} redraw height="250"/>
-			<h3>Total Submissions: {totalSubs}</h3>
-			{chartBreakdown.map((countObj) =>
-				<p>{countObj.label}: {countObj.value}</p>)}
+		<div style={pieStyle}>
+			<div>
+				<PieChart data={chartData} redraw height="250"/>
+			</div>
+			<div>
+				<h3>Total Submissions: {totalSubs}</h3>
+				{chartBreakdown.map((countObj) =>
+					<p>{countObj.label}: {countObj.value} ({(countObj.value/totalSubs*100).toFixed(2)}%)</p>)}
+			</div>
 		</div>
 	);
 }
