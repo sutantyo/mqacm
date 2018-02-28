@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../Header';
 import LeaderBoard from './LeaderBoard';
 import ProblemTab from './ProblemTab';
 import Instructions from './Instructions';

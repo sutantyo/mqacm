@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Announcements from './Announcements';
-import Header from '../Header';
 import Upcoming from './Upcoming';
 import Welcome from './Welcome';
 

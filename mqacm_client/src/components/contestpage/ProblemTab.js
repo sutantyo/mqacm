@@ -3,7 +3,7 @@ import Paper from 'material-ui/Paper';
 import ProblemList from './ProblemList';
 import TextField from 'material-ui/TextField';
 import * as firebase from 'firebase';
-import {orange500,grey600,greenA700,red500} from 'material-ui/styles/colors';
+import {orange500,greenA700,red500} from 'material-ui/styles/colors';
 import * as styles from '../../styles/components/problemtab';
 
 class ProblemTab extends Component{

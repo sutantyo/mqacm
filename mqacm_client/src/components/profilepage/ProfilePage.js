@@ -21,6 +21,10 @@ export default class ProfilePage extends Component{
 		if (event.charCode === 13){
       		event.preventDefault();
       		let id = parseInt(event.target.value,10);
+      		this.setState({
+      			box_warning: 'Trying to retrieve data for '+id,
+      			box_color: orange500
+      		});
       		if (id > 0){
           		axios.get('https://uhunt.onlinejudge.org/api/subs-user/'+id).then((response) => {
           			if(response.data.name === ''){
