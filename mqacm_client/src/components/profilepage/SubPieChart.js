@@ -136,10 +136,10 @@ const createPieData = (subs) => {
 
 let pieStyle = {
 	display: "flex",
-	"justify-content": "space-evenly" 
+	"justifyContent": "space-evenly" 
 }
 
-const SubTypePieChart = (props) => {
+const SubPieChart = (props) => {
 	const chartData = createPieData(props.data);
 	let totalSubs = 0;
 	chartData.forEach((type) => totalSubs += type.value);
@@ -152,10 +152,10 @@ const SubTypePieChart = (props) => {
 			<div>
 				<h3>Total Submissions: {totalSubs}</h3>
 				{chartBreakdown.map((countObj) =>
-					<p>{countObj.label}: {countObj.value} ({(countObj.value/totalSubs*100).toFixed(2)}%)</p>)}
+					<p key={countObj.label}>{countObj.label}: {countObj.value} ({(countObj.value/totalSubs*100).toFixed(2)}%)</p>)}
 			</div>
 		</div>
 	);
 }
 
-export default SubTypePieChart;
+export default SubPieChart;
