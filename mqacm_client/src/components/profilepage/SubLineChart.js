@@ -16,10 +16,16 @@ export default class SubLineChart extends Component {
 		}
 	}
 	getSubsInPeriod(start, end, verdictID){
+		if(this.state.period === 3 && !this.state.displayRejected){
+			console.log('Start: '+start.format('MMM YY')+ ' End: '+end.format('MMM YY'));
+		}
 		return this.state.subs.filter((prob) => {
 			const probUnix = moment.unix(prob[4]);
+			if(this.state.period === 3 && !this.state.displayRejected){
+				console.log('Problem: '+probUnix);
+			}
 			if(verdictID === 90){
-				return (probUnix >= start && probUnix <= end) && prob[2] === verdictID;
+				return (probUnix.isBetween(start, end)) && prob[2] === verdictID;
 			}
 			else {
 				return (probUnix >= start && probUnix <= end) && prob[2] <= verdictID;
@@ -173,23 +179,24 @@ export default class SubLineChart extends Component {
 		const sortedSubs = subs.sort((a, b) => a[4]-b[4]);
 		console.log(sortedSubs);
 		const now = moment();
+		const startTimeLabel = moment.unix(sortedSubs[0][4]);
+		const differencePerColumn = parseInt(now.diff(startTimeLabel, 'months') / 12);
 		const startTime = moment.unix(sortedSubs[0][4]);
-		const difference = startTime.diff(now);
-		console.log(startTime, startTime.add(difference, 'ms'), now);
+		const endTime = moment.unix(sortedSubs[0][4]).add(differencePerColumn, 'months');
 		return {
 			labels: [
-				startTime.format('MMM YY'),
-				startTime.add(difference, 'ms').format('MMM YY'),
-				startTime.add(difference * 2, 'milliseconds').format('MMM YY'),
-				moment().subtract(9, 'months').format('MMM YY'),
-				moment().subtract(8, 'months').format('MMM YY'),
-				moment().subtract(7, 'months').format('MMM YY'),
-				moment().subtract(6, 'months').format('MMM YY'),
-				moment().subtract(5, 'months').format('MMM YY'),
-				moment().subtract(4, 'months').format('MMM YY'),
-				moment().subtract(3, 'months').format('MMM YY'),
-				moment().subtract(2, 'months').format('MMM YY'),
-				moment().subtract(1, 'months').format('MMM YY'),
+				startTimeLabel.format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
 				moment().format('MMM YY')
 			],
 			datasets: [
@@ -202,18 +209,18 @@ export default class SubLineChart extends Component {
 					pointHighlightFill: 'rgba(0, 255, 0.4)',
 					pointHighlightStroke: 'rgba(0, 255, 0.6)',
 					data: [
-						this.getSubsInPeriod(startTime, startTime.add(difference, 'ms'), 90).length,
-						this.getSubsInPeriod(moment().subtract(11, 'months').startOf('month'), moment().subtract(11, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(10, 'months').startOf('month'), moment().subtract(10, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(9, 'months').startOf('month'), moment().subtract(9, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(8, 'months').startOf('month'), moment().subtract(8, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(7, 'months').startOf('month'), moment().subtract(7, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(6, 'months').startOf('month'), moment().subtract(6, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(5, 'months').startOf('month'), moment().subtract(5, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(4, 'months').startOf('month'), moment().subtract(4, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(3, 'months').startOf('month'), moment().subtract(3, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(2, 'months').startOf('month'), moment().subtract(2, 'months').endOf('month'), 90).length,
-						this.getSubsInPeriod(moment().subtract(1, 'months').startOf('month'), moment().subtract(1, 'months').endOf('month'), 90).length,
+						this.getSubsInPeriod(startTime, endTime, 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), now, 90).length,
 						this.getSubsInPeriod(moment().startOf('month'), moment().endOf('month'), 90).length
 					]
 				},
