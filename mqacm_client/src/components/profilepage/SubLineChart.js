@@ -177,26 +177,33 @@ export default class SubLineChart extends Component {
 	}
 	createLineDataLifetime(subs){
 		const sortedSubs = subs.sort((a, b) => a[4]-b[4]);
-		console.log(sortedSubs);
+		let lifetimePeriod = 'weeks';
+		if(moment.unix(sortedSubs[0][4]).isBefore(moment().subtract(3, 'years'))){
+			lifetimePeriod = 'months';
+		} else if (moment.unix(sortedSubs[0][4]).isBefore(moment().subtract(1, 'month'))){
+			lifetimePeriod = 'days'
+		}
 		const now = moment();
 		const startTimeLabel = moment.unix(sortedSubs[0][4]);
-		const differencePerColumn = parseInt(now.diff(startTimeLabel, 'months') / 12);
+		const differencePerColumn = parseInt(now.diff(startTimeLabel, lifetimePeriod) / 12);
 		const startTime = moment.unix(sortedSubs[0][4]);
-		const endTime = moment.unix(sortedSubs[0][4]).add(differencePerColumn, 'months');
+		const endTime = moment.unix(sortedSubs[0][4]).add(differencePerColumn, lifetimePeriod);
+		const rStartTime = moment.unix(sortedSubs[0][4]);
+		const rEndTime = moment.unix(sortedSubs[0][4]).add(differencePerColumn, lifetimePeriod);
 		return {
 			labels: [
 				startTimeLabel.format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
-				startTimeLabel.add(differencePerColumn, 'months').format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
+				startTimeLabel.add(differencePerColumn, lifetimePeriod).format('MMM YY'),
 				moment().format('MMM YY')
 			],
 			datasets: [
@@ -210,17 +217,17 @@ export default class SubLineChart extends Component {
 					pointHighlightStroke: 'rgba(0, 255, 0.6)',
 					data: [
 						this.getSubsInPeriod(startTime, endTime, 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), endTime.add(differencePerColumn, 'months'), 90).length,
-						this.getSubsInPeriod(startTime.add(differencePerColumn, 'months'), now, 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), endTime.add(differencePerColumn, lifetimePeriod), 90).length,
+						this.getSubsInPeriod(startTime.add(differencePerColumn, lifetimePeriod), now, 90).length,
 						this.getSubsInPeriod(moment().startOf('month'), moment().endOf('month'), 90).length
 					]
 				},
@@ -233,18 +240,18 @@ export default class SubLineChart extends Component {
 					pointHighlightFill: 'rgba(255, 0, 0.4)',
 					pointHighlightStroke: 'rgba(255, 0, 0.6)',
 					data : [
-						this.getSubsInPeriod(moment().subtract(12, 'months').startOf('month'), moment().subtract(12, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(11, 'months').startOf('month'), moment().subtract(11, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(10, 'months').startOf('month'), moment().subtract(10, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(9, 'months').startOf('month'), moment().subtract(9, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(8, 'months').startOf('month'), moment().subtract(8, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(7, 'months').startOf('month'), moment().subtract(7, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(6, 'months').startOf('month'), moment().subtract(6, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(5, 'months').startOf('month'), moment().subtract(5, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(4, 'months').startOf('month'), moment().subtract(4, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(3, 'months').startOf('month'), moment().subtract(3, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(2, 'months').startOf('month'), moment().subtract(2, 'months').endOf('month'), 80).length,
-						this.getSubsInPeriod(moment().subtract(1, 'months').startOf('month'), moment().subtract(1, 'months').endOf('month'), 80).length,
+						this.getSubsInPeriod(rStartTime, rEndTime, 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), rEndTime.add(differencePerColumn, lifetimePeriod), 80).length,
+						this.getSubsInPeriod(rStartTime.add(differencePerColumn, lifetimePeriod), now, 80).length,
 						this.getSubsInPeriod(moment().startOf('month'), moment().endOf('month'), 80).length
 					]
 				}
