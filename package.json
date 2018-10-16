@@ -1,0 +1,19 @@
+{
+  "name": "mqacm",
+  "version": "0.4.0",
+  "description": "simple react app to display MQ ACM competition leaderboard",
+  "main": "server.js",
+  "scripts": {
+    "starts": "node server.js"
+  },
+  "author": "Daniel Sutantyo",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.4.1",
+    "express": "^4.15.3",
+    "firebase": "^4.1.2",
+    "googleapis": "^19.0.0",
+    "node-schedule": "^1.2.3",
+    "request": "^2.81.0"
+  }
+}
