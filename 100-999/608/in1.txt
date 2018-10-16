@@ -1,0 +1,10 @@
+3
+ABC DEF up 
+GHI JKL even 
+EF DA up 
+AFG JKL down 
+A J down 
+A D even 
+ED FG even 
+AB CI up 
+A D up 

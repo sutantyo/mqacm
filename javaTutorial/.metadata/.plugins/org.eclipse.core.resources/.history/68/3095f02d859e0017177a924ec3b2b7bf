@@ -1,0 +1,18 @@
+
+public class DynamicProgramming {
+
+	
+	public static void main(String[] args){
+		
+		long start_time = System.currentTimeMillis();
+		System.out.println(fibonacci(40));
+		System.out.println("time: " + (System.currentTimeMillis()-start_time));
+	}
+	
+	public static int fibonacci(int n){
+		if (n == 1 || n == 2)
+			return 1;
+		else
+			return fibonacci(n-1) + fibonacci(n-2);
+	}
+}

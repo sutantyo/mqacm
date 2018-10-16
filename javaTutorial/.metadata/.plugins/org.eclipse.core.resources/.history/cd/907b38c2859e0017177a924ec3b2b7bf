@@ -1,0 +1,28 @@
+
+public class DynamicProgramming {
+
+	public static int[] fib;
+	
+	public static void main(String[] args){
+		
+		fib = new int[46];
+		fib[0] = 0;
+		fib[1] = 1;
+		fib[2] = 1;
+
+		long start_time = System.currentTimeMillis();
+		System.out.println(fibonacci(44));
+		System.out.println(fibonacci(45));
+		System.out.println(fibonacci(46));
+		System.out.println("time: " + (System.currentTimeMillis()-start_time));
+	}
+	
+	public static int fibonacci(int n){
+		if (fib[n] != 0)
+			return fib[n];
+		else{
+			fib[n] = fibonacci(n-1) + fibonacci(n-2);
+			return fib[n]
+		}
+	}
+}
